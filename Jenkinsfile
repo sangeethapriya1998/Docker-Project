@@ -4,6 +4,7 @@ pipeline {
     registry = "sangeethapriya1998/flask"
     registry_mysql = "10.138.0.3:5001/sangeethapriya1998/mysql"
     dockerImage = ""
+    DOCKER_CREDENTIALS = credentials('sangeethavenugopal')
   }
 
   agent any
@@ -14,6 +15,15 @@ pipeline {
         git 'https://github.com/sangeethapriya1998/Docker-Project.git'
       }
     }
+      stage('Build and Push Image') {
+            steps {
+                script {
+                    docker.withRegistry('https://hub.docker.com/', 'sangeethavenugopal') {
+                        // Build and push Docker image here
+                    }
+                }
+            }
+        }
 
     stage('Build image') {
       steps{
