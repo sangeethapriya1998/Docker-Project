@@ -18,7 +18,7 @@ pipeline {
     stage('Build image') {
       steps{
         script {
-          withDockerRegistry(credentialsId: ' sangeethavenugopal', url: 'docker')
+          
           dockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
       }
@@ -27,7 +27,7 @@ pipeline {
     stage('Push Image') {
       steps{
         script {
-         withDockerRegistry(credentialsId: ' sangeethavenugopal', url: 'docker') {
+          {
             dockerImage.push()
           }
         }
