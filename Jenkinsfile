@@ -44,7 +44,7 @@ pipeline {
      steps{
         script { 
        withDockerRegistry([ credentialsId: "sangeethavenugopal", url: "" ]) {
-       sh 'docker build -t " sangeethavenugopal/mysql:$BUILD_NUMBER"  "$WORKSPACE"/mysql'
+       sh 'docker build -t "sangeethavenugopal/mysql:$BUILD_NUMBER"  "$WORKSPACE"/mysql'
        
        sh 'docker push "sangeethavenugopal/mysql:$BUILD_NUMBER"'
         }
@@ -62,7 +62,7 @@ pipeline {
     //stage('Push MySQL Image') {
     //  steps{
     //    script {
-    //      withDockerRegistry([ credentialsId: " sangeethavenugopal", url: "" ]) {
+    //      withDockerRegistry([ credentialsId: "sangeethavenugopal", url: "" ]) {
     //        dockerImage.push('registry_mysql',)        
      //      }
      //   }
