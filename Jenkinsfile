@@ -4,7 +4,6 @@ pipeline {
     registry = "sangeethapriya1998/flask"
     registry_mysql = "sangeethapriya1998/mysql"
     dockerImage = ""
-    DOCKER_CREDENTIALS = credentials('sangeethavenugopal')
   }
 
   agent any
@@ -47,11 +46,20 @@ pipeline {
        script{
         withDockerRegistry(credentialsId: ' sangeethavenugopal', url: 'docker') {
         sh 'docker build -t "sangeethapriya1998/mysql:$BUILD_NUMBER"  "$WORKSPACE"/mysql'
-        sh 'docker push "sangeethapriya1998/mysql:$BUILD_NUMBER"'
+       
         }
         }
       }
    }
+       stage('push mysql image') {
+      steps{
+        script {
+         withDockerRegistry(credentialsId: ' sangeethavenugopal', url: 'docker') {
+            dockerImage.push()
+          }
+        }
+      }
+    }
     stage('Deploy App') {
       steps {
         script {
