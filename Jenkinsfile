@@ -24,10 +24,11 @@ pipeline {
       }
     }
 
-    stage('Push Image') {
+    stage('Push Flask Image') {
       steps{
         script {
           {
+            withDockerRegistry([credentialsId: "sangeethavenugopal", url: 'docker'])
             dockerImage.push()
           }
         }
@@ -44,9 +45,9 @@ pipeline {
    stage('Build mysql image') {
      steps{
        script{
-        withDockerRegistry(credentialsId: ' sangeethavenugopal', url: 'docker') {
+        withDockerRegistry([credentialsId: "sangeethavenugopal", url: 'docker']) {
         sh 'docker build -t "sangeethapriya1998/mysql:$BUILD_NUMBER"  "$WORKSPACE"/mysql'
-       
+        sh 'docker push  "sangeethapriya1998/mysql:$BUILD_NUMBER'"
         }
         }
       }
@@ -54,8 +55,8 @@ pipeline {
        stage('push mysql image') {
       steps{
         script {
-         withDockerRegistry(credentialsId: ' sangeethavenugopal', url: 'docker') {
-            dockerImage.push()
+         withDockerRegistry([credentialsId: "sangeethavenugopal", url: 'docker']) {
+            dockerImage.push("registry_mysql")
           }
         }
       }
