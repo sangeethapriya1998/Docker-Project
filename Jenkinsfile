@@ -1,8 +1,8 @@
 pipeline {
 
   environment {
-    registry = "sangeethapriya1998/flask"
-    registry_mysql = "sangeethapriya1998/mysql"
+    registry = "sangeethavenugopal/flask"
+    registry_mysql = "sangeethavenugopal/mysql"
     dockerImage = ""
   }
 
@@ -14,11 +14,10 @@ pipeline {
         git 'https://github.com/sangeethapriya1998/Docker-Project.git'
       }
     }
-     
+
     stage('Build image') {
       steps{
         script {
-          
           dockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
       }
@@ -27,10 +26,9 @@ pipeline {
     stage('Push Flask Image') {
       steps{
         script {
-          {
-            withDockerRegistry([credentialsId: "sangeethavenugopal", url: 'docker'])
-            dockerImage.push()
-          }
+          withDockerRegistry([ credentialsId: "sangeethavenugopal", url: "" ]) {
+            dockerImage.push()        
+           }
         }
       }
     }
@@ -44,23 +42,33 @@ pipeline {
    }
    stage('Build mysql image') {
      steps{
-       script{
-        withDockerRegistry([credentialsId: "sangeethavenugopal", url: 'docker']) {
-        sh 'docker build -t "sangeethapriya1998/mysql:$BUILD_NUMBER"  "$WORKSPACE"/mysql'
-        sh 'docker push  "sangeethapriya1998/mysql:$BUILD_NUMBER'"
+        script { 
+       withDockerRegistry([ credentialsId: "sangeethavenugopal", url: "" ]) {
+       sh 'docker build -t " sangeethavenugopal/mysql:$BUILD_NUMBER"  "$WORKSPACE"/mysql'
+       
+       sh 'docker push "sangeethavenugopal/mysql:$BUILD_NUMBER"'
         }
-        }
-      }
-   }
-       stage('push mysql image') {
+      }}}
+      
+    stage('Push MySQL Image') {
       steps{
         script {
-         withDockerRegistry([credentialsId: "sangeethavenugopal", url: 'docker']) {
+          withDockerRegistry([ credentialsId: "sangeethavenugopal", url: "" ]) {
             dockerImage.push("registry_mysql")
           }
         }
       }
     }
+    //stage('Push MySQL Image') {
+    //  steps{
+    //    script {
+    //      withDockerRegistry([ credentialsId: " sangeethavenugopal", url: "" ]) {
+    //        dockerImage.push('registry_mysql',)        
+     //      }
+     //   }
+     // }
+    // }
+    
     stage('Deploy App') {
       steps {
         script {
@@ -70,5 +78,3 @@ pipeline {
     }
 
   }
-
-}
