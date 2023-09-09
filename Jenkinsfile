@@ -18,8 +18,7 @@ pipeline {
       stage('Build and Push Image') {
             steps {
                 script {
-                    docker.withRegistry('https://hub.docker.com/', '
-sangeethavenugopal') {
+                    docker.withRegistry('https://hub.docker.com/', 'sangeethavenugopal') {
                         // Build and push Docker image here
                     }
                 }
