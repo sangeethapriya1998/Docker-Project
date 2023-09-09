@@ -2,7 +2,7 @@ pipeline {
 
   environment {
     registry = "sangeethapriya1998/flask"
-    registry_mysql = "10.138.0.3:5001/sangeethapriya1998/mysql"
+    registry_mysql = "sangeethapriya1998/mysql"
     dockerImage = ""
     DOCKER_CREDENTIALS = credentials('sangeethavenugopal')
   }
