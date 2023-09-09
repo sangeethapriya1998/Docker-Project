@@ -15,19 +15,11 @@ pipeline {
         git 'https://github.com/sangeethapriya1998/Docker-Project.git'
       }
     }
-      stage('Build and Push Image') {
-            steps {
-                script {
-                    docker.withRegistry('https://hub.docker.com/', 'sangeethavenugopal') {
-                        // Build and push Docker image here
-                    }
-                }
-            }
-        }
-
+     
     stage('Build image') {
       steps{
         script {
+          withDockerRegistry(credentialsId: ' sangeethavenugopal', url: 'docker')
           dockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
       }
@@ -36,7 +28,7 @@ pipeline {
     stage('Push Image') {
       steps{
         script {
-          docker.withRegistry( "" ) {
+         withDockerRegistry(credentialsId: ' sangeethavenugopal', url: 'docker') {
             dockerImage.push()
           }
         }
@@ -54,6 +46,7 @@ pipeline {
      steps{
        sh 'docker build -t "sangeethapriya1998/mysql:$BUILD_NUMBER"  "$WORKSPACE"/mysql'
         sh 'docker push "sangeethapriya1998/mysql:$BUILD_NUMBER"'
+       withDockerRegistry(credentialsId: ' sangeethavenugopal', url: 'docker')
         }
       }
     stage('Deploy App') {
