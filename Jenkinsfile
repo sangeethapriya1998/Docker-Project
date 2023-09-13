@@ -11,7 +11,7 @@ pipeline {
   
     stage('Checkout Source') {
       steps {
-        git 'https://github.com/sangeethapriya1998/Docker-Project.git'
+        git 'https://github.com/sangeethapriya1998/Docker-Project'
       }
     }
 
@@ -46,7 +46,7 @@ pipeline {
        withDockerRegistry([ credentialsId: "sangeethavenugopal", url: "" ]) {
        sh 'docker build -t "sangeethavenugopal/mysql:$BUILD_NUMBER"  "$WORKSPACE"/mysql'
        
-       sh 'docker push "sangeethavenugopal/mysql:$BUILD_NUMBER" '
+       sh 'docker push "sangeethavenugopal/mysql:$BUILD_NUMBER"'
         }
       }}}
       
@@ -59,7 +59,6 @@ pipeline {
         }
       }
     }
-    
     stage('Deploy App') {
       steps {
         script {
@@ -67,5 +66,7 @@ pipeline {
         }
       }
     }
+
   }
+
 }
