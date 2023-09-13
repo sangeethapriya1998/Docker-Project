@@ -26,7 +26,7 @@ pipeline {
     stage('Push Flask Image') {
       steps{
         script {
-          withDockerRegistry([ credentialsId: "sangeethavenugopal", url: "" ]) {
+          withDockerRegistry([credentialsId:"sangeethavenugopal", url: "" ]) {
             dockerImage.push()        
            }
         }
@@ -53,7 +53,7 @@ pipeline {
     stage('Push MySQL Image') {
       steps{
         script {
-          withDockerRegistry([ credentialsId: "sangeethavenugopal", url: "" ]) {
+          withDockerRegistry([credentialsId:"sangeethavenugopal", url: "" ]) {
             dockerImage.push("registry_mysql")
           }
         }
