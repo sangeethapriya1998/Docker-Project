@@ -33,7 +33,7 @@ pipeline {
       steps{
         script {
            {
-             docker push sangeethavenugopal/flask:$BUILD_NUMBER
+             docker push "sangeethavenugopal/flask:$BUILD_NUMBER"
             dockerImage.push()        
            }
         }
