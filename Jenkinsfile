@@ -4,6 +4,7 @@ pipeline {
     registry = "sangeethavenugopal/flask"
     registry_mysql = "sangeethavenugopal/mysql"
     dockerImage = ""
+     dockerImage1 = ""
   }
 
   agent any
@@ -37,8 +38,7 @@ pipeline {
     
    stage('Build mysql image') {
      steps{
-         dockerImage = docker.build registry_mysql+ ":$BUILD_NUMBER"
-           
+         dockerImage1 = docker.build registry_mysql + ":$BUILD_NUMBER"   
       }
    }
       
