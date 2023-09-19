@@ -22,7 +22,20 @@ pipeline {
         }
       }
     }
+stage('Docker Login') {
+            steps {
+                script {
+                    // Your Docker Hub or container registry credentials
+                    def registryUrl = 'https:///hub.docker.com'
+                    def registryCredentialsId = 'sangeethavenugopal1998'
 
+                    // Retrieve Docker registry username and password from Jenkins credentials
+                    def registryCredentials = credentials(sangeethavenugopal1998)
+
+                    // Docker login using --password-stdin
+                    sh """
+                    echo \\"${registryCredentials.sangeethavenugopal}\\n${registryCredentials.password}\\" | docker login -u \\"${registryCredentials.username}\\" --password-stdin ${registryUrl}
+                    """
     stage('Push Flask Image') {
       steps{
         script {
