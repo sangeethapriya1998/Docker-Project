@@ -32,7 +32,6 @@ pipeline {
     stage('Push Flask Image1') {
       steps{
         script {
-           {
              docker push 'sangeethavenugopal/flask:$BUILD_NUMBER'
             dockerImage.push()        
            }
