@@ -37,7 +37,7 @@ pipeline {
     
    stage('Build mysql image') {
      steps{
-          sh 'docker login -p(credentialsId:"sangeethavenugopal1998", url: "")'
+         dockerImage = docker.build registry + ":$BUILD_NUMBER"
            
       }
    }
