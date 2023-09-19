@@ -42,7 +42,7 @@ pipeline {
          dockerImage = docker.build registry_mysql + ":$BUILD_NUMBER"   
       }
    }
-      
+   }    
     stage('Push MySQL Image') {
       steps{
         script {
