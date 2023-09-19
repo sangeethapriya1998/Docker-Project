@@ -37,14 +37,6 @@ pipeline {
         }
       }
     
-
-    stage('current') {
-      steps{
-        dir("${env.WORKSPACE}/mysql"){
-          sh "pwd"
-          }
-      }
-   }
    stage('Build mysql image') {
      steps{
           sh 'docker login -p(credentialsId:"sangeethavenugopal1998", url: "")'
