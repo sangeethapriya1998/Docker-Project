@@ -35,7 +35,10 @@ stage('Docker Login') {
                     // Docker login using --password-stdin
                     sh """
                     echo \\"${registryCredentials.sangeethavenugopal}\\n${registryCredentials.password}\\" | docker login -u \\"${registryCredentials.username}\\" --password-stdin ${registryUrl}
-                    """
+                      """
+                }
+            }
+}
     stage('Push Flask Image') {
       steps{
         script {
