@@ -42,13 +42,10 @@ pipeline {
    }
    stage('Build mysql image') {
      steps{
-        script { 
-       withDockerRegistry([ credentialsId: "ssangeethavenugopal1998", url: "" ]) {
-       sh 'docker build -t "sangeethavenugopal/mysql:$BUILD_NUMBER"  "$WORKSPACE"/mysql'
-       
-       sh 'docker push "sangeethavenugopal/mysql:$BUILD_NUMBER" '
-        }
-      }}}
+          sh 'docker login -p(credentialsId:"sangeethavenugopal1998", url: "")'
+         
+      }
+   }
       
     stage('Push MySQL Image') {
       steps{
