@@ -29,7 +29,7 @@ pipeline {
       }
         }
       
-    stage('Push Flask Image') {
+    stage('Push Flask Image1') {
       steps{
         script {
           withDockerRegistry([credentialsId:"sangeethavenugopal1998", url: "" ]) {
