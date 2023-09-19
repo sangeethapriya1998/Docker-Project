@@ -22,13 +22,13 @@ pipeline {
         }
       }
     }
-    stages {
+   
        stage('Push Flask Image') {
       steps{
            sh "docker login -u sangeethavenugopal -p Sangeetha@1998 " 
       }
         }
-      }
+      
     stage('Push Flask Image') {
       steps{
         script {
