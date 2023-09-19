@@ -31,7 +31,7 @@ pipeline {
       
     stage('Push Flask Image1') {
       steps{
-            sh " docker push 'docker.io/sangeethavenugopal/flask'"
+            sh " docker push 'docker.io/sangeethavenugopal/flask:$BUILD_NUMBER'"
         }
       }
     
