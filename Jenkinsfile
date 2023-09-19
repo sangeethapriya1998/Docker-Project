@@ -37,7 +37,7 @@ pipeline {
     
    stage('Build mysql image') {
      steps{
-         dockerImage = docker.build registry + ":$BUILD_NUMBER"
+         dockerImage = docker.build  registry_mysql+ ":$BUILD_NUMBER"
            
       }
    }
