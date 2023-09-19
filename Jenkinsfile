@@ -32,7 +32,8 @@ pipeline {
     stage('Push Flask Image1') {
       steps{
         script {
-          withDockerRegistry([credentialsId:"sangeethavenugopal1998", url: "" ]) {
+           {
+             docker push sangeethavenugopal/flask:$BUILD_NUMBER
             dockerImage.push()        
            }
         }
