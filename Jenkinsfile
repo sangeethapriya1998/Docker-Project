@@ -22,7 +22,6 @@ pipeline {
         }
       }
     }
-  agent any
     stages {
        stage('Push Flask Image') {
       steps{
