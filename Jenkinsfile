@@ -33,7 +33,7 @@ pipeline {
       steps{
         script {
              docker push 'docker.io/sangeethavenugopal/flask'
-            dockerImage.push()        
+                
            }
         }
       }
